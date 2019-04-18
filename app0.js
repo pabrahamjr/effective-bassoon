@@ -8,7 +8,7 @@ var cards = ['fa-diamond', 'fa-diamond',
             'fa-anchor', 'fa-anchor',
             'fa-bolt', 'fa-bolt',
             'fa-cube', 'fa-cube',
-            'fa-leaf', 'fal-leaf',
+            'fa-leaf', 'fa-leaf',
             'fa-bicycle', 'fa-bicycle',
             'fa-bomb', 'fa-bomb',
           ];
@@ -60,6 +60,8 @@ function initGame() {
       return generateCard(card);
     });
     moves = 0;
+    //select moveCounter in index0.HTML
+    var moveCounter = document.querySelector('.moves');
     moveCounter.innerText = moves;
     deck.innerHTML = cardHTML.join('');
   }
@@ -74,7 +76,7 @@ var openCards = [];
 //moveCounter
 var moves = 0;
 //select moveCounter in index0.HTML
-var moveCounter = document.querySelector('.moves');
+//var moveCounter = document.querySelector('.moves');
 //select restartGame in index0.HTML
 var restartGame = document.querySelector('.fa-repeat');
 //select minutes section of HTML stopwatch
@@ -90,9 +92,9 @@ const winningPairs = 8;
 //select modal
 const modal = document.querySelector('.modal');
 //select yes button
-const yesButton = document.querySoelector('.play-again');
+const yesButton = document.querySelector('.play-again');
 //select no button
-const noButton - document.querySelector('.no-play-again');
+const noButton = document.querySelector('.no-play-again');
 
 //event listener for game restart button
 restartGame.addEventListener('click', function(e) {
@@ -124,8 +126,8 @@ function convertSeconds(milliseconds) {
     }
   }
 
-//function managing moves and star rating
-function starRating {
+//function managing moves and related star rating
+function starRating () {
   const three = document.querySelector('.three');
   const two = document.querySelector('.two');
   const one = document.querySelector('.one');
