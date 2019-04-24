@@ -3,7 +3,7 @@
 //thanks Mike Wales and Ryan Waite
  * Create a list that holds all of the cards
  */
-var cards = ['fa-diamond', 'fa-diamond',
+var cards = ['fa-diamond', 'fa-diamond',//let vs var
             'fa-paper-plane-o', 'fa-paper-plane-o',
             'fa-anchor', 'fa-anchor',
             'fa-bolt', 'fa-bolt',
@@ -69,14 +69,14 @@ function initGame() {
 initGame();
 gameTimer();
 
-//global variables; thanks mike
+//global variables; thanks mike; holds all the cards
 var allCards = document.querySelectorAll('.card');
-//open cards array
+//open cards array, starts empty
 var openCards = [];
-//moveCounter
+//moveCounter, starts at 0
 var moves = 0;
 //select moveCounter in index0.HTML
-//var moveCounter = document.querySelector('.moves');
+var moveCounter = document.querySelector('.moves');
 //select restartGame in index0.HTML
 var restartGame = document.querySelector('.fa-repeat');
 //select minutes section of HTML stopwatch
@@ -147,7 +147,7 @@ function starRating () {
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
 //prevents double selecting matches
-      if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match'))
+      if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
 //add clicked card to openCards array
         openCards.push(card);
   //adds the open and show classes when cards are clicked
@@ -166,6 +166,7 @@ allCards.forEach(function(card) {
               openCards[1].classList.add('show');
 
               openCards = [];
+              //adds 1 to matched variable for each pair of matched cards
               matched++;
               if (matched === winningPairs) {
                 console.log("Game over!");
@@ -174,21 +175,24 @@ allCards.forEach(function(card) {
                 finalStats();
               }
           } else {
-            //If cards don't match, they go away or hide
+            //If cards don't match, they go away or hide; but how to limit having 3 cards open simultaneously?
               setTimeout(function() {
                 openCards.forEach(function(card) {
                   card.classList.remove('open', 'show');
                 });
-                openCards = [];
-              }, 1000);
+                openCards = []; //Yahya Elharony suggestion
+              }, 1000);//vs 500, just shortens the time it shows
+              //openCards = [];
             }
 
             moves += 1;
             moveCounter.innerText = moves;
           }
-        starRating();
+          starRating();
+        };
       });
     });
+
     function finalStats() {
       const officialTime = document.querySelector('.official-time');
       const officialMoves = document.querySelector('.official-moves');
@@ -211,15 +215,15 @@ allCards.forEach(function(card) {
           }
         }
       }
-
+//displays modal
       modal.style.display = "block";
     }
 
     //replay button event listener
     yesButton.addEventListener('click', function(e) {
       modal.style.display = 'none';
-      initiateGame();
-      console.log('Reinitiate game');
+      initGame();
+      console.log('Restart game');
     });
 
     //no replay button event listener
