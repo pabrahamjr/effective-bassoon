@@ -102,7 +102,7 @@ restartGame.addEventListener('click', function(e) {
   allCards.forEach(function(card) {
     card.classList.remove('open', 'show', 'match');
   });
-  initGame();
+  //initGame();
   console.log('restart game');
 });
 
@@ -181,7 +181,7 @@ allCards.forEach(function(card) {
                   card.classList.remove('open', 'show');
                 });
                 openCards = []; //Yahya Elharony suggestion
-              }, 1000);//vs 500, just shortens the time it shows
+              }, 400);//vs 1000, just shortens the time it shows
               //openCards = [];
             }
 
